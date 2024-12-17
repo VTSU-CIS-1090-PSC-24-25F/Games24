@@ -1,0 +1,1 @@
+import{t as a,s as r}from"./index-DY6icI3c.js";import{W as t,H as s}from"./screen-jNpdIWPy.js";let g="Cops and Robbers",i={"background-color":"orange","background-size":"cover"},o=r();o.image="🦸‍♀️";o.x=t/2;o.y=s/2;let e=r();e.image="🦹‍♂️";e.x=t/2;e.y=s/2;function b(m,n){a.title="My Game",a.score="Score: 0"}export{i as background,b as frame,g as name};
