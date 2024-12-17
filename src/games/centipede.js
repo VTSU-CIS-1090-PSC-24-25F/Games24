@@ -4,7 +4,7 @@ import text from '../text.js';
 import { WIDTH, HEIGHT } from '../screen.js';
 
 //Set the name of my game...
-let name = "The Santa Centipede";
+let name = "The Human Santapede";
 text.color = "white";
 
 //Set a fun background image

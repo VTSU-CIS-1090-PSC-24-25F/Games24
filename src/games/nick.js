@@ -5,6 +5,7 @@ import { WIDTH, HEIGHT } from '../screen.js';
 
 //Set the name
 let name = "Soccer weave";
+let alive = true;
 
 //Set up your background
 const background = {
@@ -42,14 +43,15 @@ ball2.image = "⚽";
 ball2.x = 500;
 ball2.y = 350;
 ball2.vX = 800;
-ball2.vY = 0;
+ball2.vY = 40;
 
 let score = 0;
 
 function frame(t, dt) {
+    if (!alive)
+        return;
+
     text.score = "Score: " + score;
-
-
 
     //Update hero's X Velocity based right / left button
     if (buttons.right) {
@@ -143,33 +145,41 @@ function frame(t, dt) {
             ball.vY = ball.vY * -0.92;
             ball.y = GROUND;
         }
+    }
 
 
-        if (ball2) {
+    if (ball2) {
 
-            //Adjust the ball's position based on velocity
-            ball2.y += ball2.vY * dt;
-            ball2.x += ball2.vX * dt;
+        //Adjust the ball's position based on velocity
+        ball2.y += ball2.vY * dt;
+        ball2.x += ball2.vX * dt;
 
-            //And make it rotate a little;
-            ball2.rotation += Math.sign(ball2.vX) * 300 * dt;
+        //Every frame the y velocity gets GRAVITY added to it
+        ball2.vY = ball2.vY + GRAVITY * dt;
 
-            //Bounce the ball off the sides
-            if (ball2.x > WIDTH) {
-                ball2.vX = ball2.vX * -1;
-                ball2.x = WIDTH;
-            } else if (ball2.x < 0) {
-                ball2.vX = ball2.vX * -1;
-                ball2.x = 0;
-            }
+        //And make it rotate a little;
+        ball2.rotation += Math.sign(ball2.vX) * 300 * dt;
 
-
-
-
+        //Bounce the ball off the sides
+        if (ball2.x > WIDTH) {
+            ball2.vX = ball2.vX * -1;
+            ball2.x = WIDTH;
+        } else if (ball2.x < 0) {
+            ball2.vX = ball2.vX * -1;
+            ball2.x = 0;
+        }
+        if (ball2.y <= GROUND) {
+            ball2.vY = ball2.vY * -0.92;
+            ball2.y = GROUND;
         }
 
     }
 
+
+    if (distance(player, ball) < 30 || distance(player, ball2) < 30) {
+        text.title = "Game Over!";
+        alive = false;
+    }
 
 }
 
@@ -197,7 +207,6 @@ export {
  * @param t - The number of seconds since the game began 
  * @param dt - The number of seconds since the last frame
  */
-text.title = "Soccer Weave";
 text.score = "Score: 0";
 
 

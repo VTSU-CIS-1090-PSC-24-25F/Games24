@@ -64,7 +64,7 @@ function distance(a, b) {
 function destroyMoneyBag() {
     if (distance(targets[0], player) < 20) {
         // Destroy the money bag (targets[0])
-        text.title = "GAME OVER! Now try again!";
+        text.title = "GAME OVER!<br>Now try again!";
         gameOver = true;
 
 

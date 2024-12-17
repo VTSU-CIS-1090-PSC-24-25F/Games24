@@ -48,7 +48,7 @@ const target = sprites.spawn();
  * @param dt - The number of seconds since the last frame
  */
 function frame(t, dt) {
-    text.score = "Score:" + score;
+    text.score = "Score: " + score;
 
 
 

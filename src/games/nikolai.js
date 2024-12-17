@@ -486,9 +486,9 @@ function frame(t, dt) {
     //Game title
     text.title = "";
     //Using the score text to display day amount
-    text.score = "Day:" + day.toString();
+    text.score = "Day: " + day.toString();
     //Made a new text called hunger, displays the current value of hunger
-    text.hunger = "Hunger:" + bear.hunger.toString();
+    text.score += "<br>Hunger: " + bear.hunger.toString();
 
     //If bear dead he can't move
     if (bear.live) {

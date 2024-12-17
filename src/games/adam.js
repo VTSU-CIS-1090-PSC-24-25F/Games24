@@ -32,7 +32,7 @@ explorer.y = 30;
 let finishLine = sprites.spawn();
 finishLine.image = "🏁";
 finishLine.x = 760;
-finishLine.y = 480;
+finishLine.y = 470;
 
 drawWalls();
 restartGame();
@@ -74,6 +74,7 @@ function createWallSprite(x, y, image) {
     wallSprite.image = image;
     wallSprite.x = x;
     wallSprite.y = y;
+    wallSprite.yScale = 1.4;
     walls.push(wallSprite);
 }
 

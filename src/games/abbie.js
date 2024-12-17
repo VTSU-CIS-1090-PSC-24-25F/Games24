@@ -70,11 +70,11 @@ function updateFish() {
 
         // random fsh sprite
         newFish.image = FishOpt[Math.floor(Math.random() * FishOpt.length)];
-  
+
         // sets random fishy position :3
-        newFish.x = (Math.random() * WIDTH) + 5;  
-        newFish.y = (Math.random() * 300) + 25;   
-        newFish.vX = 50;                   
+        newFish.x = (Math.random() * WIDTH) + 5;
+        newFish.y = (Math.random() * 300) + 25;
+        newFish.vX = 50;
 
         fishies.push(newFish);
     }
@@ -100,17 +100,17 @@ function frame(t, dt) {
 
         // if fish hits sides, bounce off n flip image
 
-            if(fish.x > 775){
-                fish.x = 775;
-                fish.vX = fish.vX * -1;
-                fish.flipH = false;
+        if (fish.x > 775) {
+            fish.x = 775;
+            fish.vX = fish.vX * -1;
+            fish.flipH = false;
 
-            } else if(fish.x < 25){
-                fish.x = 25;
-                fish.vX = fish.vX * -1;
-                fish.flipH = true;
-            }
-        
+        } else if (fish.x < 25) {
+            fish.x = 25;
+            fish.vX = fish.vX * -1;
+            fish.flipH = true;
+        }
+
     }
 
 
@@ -152,7 +152,7 @@ function frame(t, dt) {
 
     for (let l of line) {
         l.y += lineSpeed;
-    
+
         for (let i = fishies.length - 1; i >= 0; i--) {
             let fish = fishies[i];
 
@@ -162,26 +162,35 @@ function frame(t, dt) {
                 sprites.destroy(fish);
                 fish = null;
                 score++;  // Update the score
-                updateFish();  
+                updateFish();
                 break;
             }
             fishies = fishies.filter(z => z != null);
         }
+    } 
+
+    //Remove lines that have gone off the bottom
+    for ( let i = 0; i < line.length; i++ ){
+        if ( line[i].y < 0 ){
+            sprites.destroy(line[i]);
+            line[i] = null;
+        }
     }
-    
-// increqases amount of fish based on score :)
-if(score == 5){
-    MAX_FISH = 7;
-    
-} else if(score == 10){
-    MAX_FISH = 10;
-    
-} else if(score ==20){
-    MAX_FISH = 15;
-    
-} else if(score > 30){
-    MAX_FISH = 20;
-}
+    line = line.filter( l => l != null ); 
+
+    // increqases amount of fish based on score :)
+    if (score == 5) {
+        MAX_FISH = 7;
+
+    } else if (score == 10) {
+        MAX_FISH = 10;
+
+    } else if (score == 20) {
+        MAX_FISH = 15;
+
+    } else if (score > 30) {
+        MAX_FISH = 20;
+    }
 
 
 }

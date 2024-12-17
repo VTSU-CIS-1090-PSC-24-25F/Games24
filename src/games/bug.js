@@ -76,15 +76,15 @@ function playerDead() {
  */
 function frame(t, dt) {
 
-    if (buttons.right) {
+    if (buttons.right && alive) {
         player.vX = PLAYER_SPEED;
-    } else if (buttons.left) {
+    } else if (buttons.left && alive) {
         player.vX = -PLAYER_SPEED;
     } else {
         player.vX = 0;
     }
 
-    if (buttons.up && player.y == GROUND) {
+    if (buttons.up && player.y == GROUND && alive) {
         player.vY = JUMP_SPEED;
     }
 
@@ -109,10 +109,6 @@ function frame(t, dt) {
         player.x = WIDTH;
 
 
-    if (buttons.up && player.y == GROUND) {
-        player.vY = JUMP_SPEED;
-        //playerDead();
-    }
     if (player.vX == 0) {
         player.image = "🧍‍♂️";
     } else {
