@@ -36,11 +36,11 @@ line2.y = HEIGHT / 3.6;
 
 let raceCar = sprites.spawn();
 raceCar.image = "🏎️";
-raceCar.x = WIDTH / 15;
+raceCar.x = WIDTH / 12;
 raceCar.y = HEIGHT / 2.01;
 raceCar.flipH = true;
-raceCar.yScale = 4;
-
+raceCar.yScale = 3.5;
+raceCar.xScale = 2;
 
 
 let truck = sprites.spawn();

@@ -125,7 +125,7 @@ function propSpawn(sprite, type) {
                 }
                 break;
 
-            }
+        }
     }
 }
 
@@ -213,7 +213,8 @@ function entityQuantity(sprite) {
         case tree:
             treeNumber = 25;
             return treeNumber;
-}   }
+    }
+}
 
 
 //Within an array called bush makes as many berries as requested and places them
@@ -306,7 +307,7 @@ function entityCreation(sprite) {
                 sprite[repeat].xScale = 0.88;
             }
             break;
-        }
+    }
 }
 //Every movement checks for if the bear is on the same x and y position of the bear and
 //if the bush exists then increases hunger and deletes the bush sprite
@@ -329,7 +330,7 @@ function entityCollision(sprite) {
         case bush:
             for (let repeat = 0; repeat < sprite.length; repeat++) {
                 if (Collision(sprite[repeat], bear) &&
-                sprite[repeat].berries[0].image != "") {
+                    sprite[repeat].berries[0].image != "") {
                     if (sprite[repeat].berries[0].image == "🍒") {
                         bear.hunger = bear.hunger + 4;
                         if (bear.hunger > bear.maxHunger) {
@@ -484,11 +485,19 @@ function borderCheck(sprite) {
  */
 function frame(t, dt) {
     //Game title
-    text.title = "";
-    //Using the score text to display day amount
-    text.score = "Day: " + day.toString();
-    //Made a new text called hunger, displays the current value of hunger
-    text.score += "<br>Hunger: " + bear.hunger.toString();
+    if (!bear.live) {
+        text.title = "Hit space to start.";
+        text.score = "";
+    } else {
+        text.title = "";
+        //Using the score text to display day amount
+        text.score = "Day: " + day.toString();
+        //Made a new text called hunger, displays the current value of hunger
+        text.score += "<br>Hunger: " + bear.hunger.toString();
+    }
+
+
+
 
     //If bear dead he can't move
     if (bear.live) {
